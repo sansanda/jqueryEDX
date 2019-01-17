@@ -10,7 +10,15 @@
         .title {
             background-color: lightblue;
         }
-        .hidden { display: none; }
+        .hidden { 
+            display: none; 
+        }
+        .square {
+            height: 50px;
+            width: 50px;
+            background-color: #555;
+        }
+
     </style>
 
 </head>
@@ -124,10 +132,179 @@
         </div>
     </form>
 
-    <!-- -->
-    <div></div>
+    <!-- 
+        Fading and sliding
+        Fading
+        Both show and hide have a vertical animation. The new content sort of "rolls" onto the screen, or "rolls" up from the screen. 
+        If you don't want that additional animation, and just want the item to slowly appear or disappear, you can use fading.
+
+        fadeIn, fadeOut and fadeToggle
+        Like their show/hide counterparts, fadeIn and fadeOut will display and hide an item respectively. 
+        And, like toggle, fadeToggle will reverse the current state of the item.
+
+        The fading functions perform their work by both modifying the CSS display property, and animates the item by modifying its opacity. 
+        If you want an item to start as hidden by default, and display it using fadeIn, you only need to set display: none; 
+        there is no need to modify the starting opacity.
+
+        Like all animation functions, the fading functions accept various parameters with the most common being the length of time (in milliseconds). 
+        Also, the fading functions return a promise, which we'll explore in Module 3.
+
+        Sliding
+        Unlike the other animations, the sliding functions cause the entire item to either slide down or slide up.
+
+        Keeping with the conventions we've already seen, slideDown will cause an item to appear, slideUp will cause it to disappear, and slideToggle will cause change its state.
+
+        The sliding functions perform their work by both modifying the CSS display property, and animates the item by modifying its position. 
+        If you want an item to start as hidden by default, and display it using slideDown, you only need to set display: none; 
+        there is no need to modify the starting position.
+
+        Like all animation functions, the sliding functions accept various parameters with the most common being the length of time (in milliseconds). 
+        Also, the sliding functions return a promise, which we'll explore in Module 3.
+    -->
+    <div class="title"> Fading </div>
+    <div>
+        <button id="fadingBtn" class="btn" type="button"> Execute</button>
+        <div id="fadingBox" class="square"> Demo content</div>
+    </div>
     
 
+    <!--
+        Removing and replacing items
+        Besides just creating new content, there will be times when you want to remove existing content, or replace content with new content. 
+        As you might have guessed, jQuery offers you this power as well.
+
+        remove and empty
+        Both remove and empty completely delete items from the DOM. 
+        The difference between the two is what they delete. 
+        In the case of remove, it will delete the item you target, while empty deletes the contents of the item you target.
+
+        Consider the following starting HTML
+
+        <div id="target">
+            <div>Some cool content</div>
+            <div>Some more cool content</div>
+        </div>
+        If you called $('#target').remove(), the resulting HTML would be, well, nothing. The entire contents of the sample are removed.
+
+        Contrast that with calling $('#target').empty(). empty deletes the contents of the target, so the resulting HTML would be as follows
+
+        <div id="target">
+        </div>
+        replaceAll and replaceWith
+        If you wish to replace existing content with new content, jQuery offers replaceAll and replaceWith. 
+        In both cases, you'll provide what existing content you wish to replace, and what new content you wish to use. 
+        The difference between the two is the order in which you pass the existing and new content.
+
+        If you had the following starting HTML...
+
+        <div id="target">
+            <div>Some cool content</div>
+            <div>Some more cool content</div>
+        </div>
+        ...and you wanted to finish with the following HTML...
+
+        <div>NEW content</div>
+        ...then either method below would work.
+
+        // replaceWith replaces the content on the left with the new content in the parameter
+        $('#target').replaceWith('<div>NEW content</div>');
+
+        // replaceAll replaces the target in the parameter with the content on the left
+        $('<div>NEW content</div>').replaceAll('#target');
+        NOTE When using either replaceAll or replaceWith, the entire element is replaced, not just the contents of the element. Use both functions with caution.
+
+        Consider the following starting HTML
+    -->
+    <div class="title"> Empty, removing and replacing</div>
+    <div>
+        <button id="errBtn" class="btn" type="button"> Execute</button>
+        <div id="errContent">
+            <div>Some cool content</div>
+            <div>Some more cool content</div>
+        </div>
+    </div>
+
+
+    <!--
+        Cloning
+
+        Clone
+        The main reason to use jQuery is because it makes "day to day" programming in JavaScript much easier, 
+        offering functionality and capabilities common to other programming environments. 
+        Because the basic operations become that much easier, it allows you to focus your attention on the cooler features you wish to add to your pages, 
+        adding interactivity, and making your page seem more like a locally installed application.
+
+        This is where the humble function clone comes into play. clone allows you to make a copy of jQuery objects.
+
+        clone in the real world
+        There are several scenarios in which clone simplifies content creation. 
+        Let's say you were building a page to allow an administrator to create email addresses and passwords. 
+        You'd like to ensure the administrator can create as many accounts as they would like on one page, 
+        and be able to send up all of the information to the server in one round trip, rather than using Ajax calls or submitting the form for each account.
+
+        This requires the ability to dynamically add labels and textboxes. You could do that this way
+
+        <button type="button" id="add-line">Add new line</button>
+        <div id="container">
+            <div class="user-entry">
+                <label>Email:</label>
+                <input type="email" />
+                <label>Password:</label>
+                <input type="password" />
+            </div>
+        </div>
+        $(function() {
+            $('#add-line').click(function() {
+                $('#container').append('<div class="user-entry"> <label>Email:</label> <input type="email" /> <label>Password:</label> <input type="password" /> </div>');
+            });
+        });
+        It would work. But you've got a large string literal in JavaScript, which can be tough to debug when you got to make changes. 
+        In addition, whatever tool you're using to create your page isn't going to be able to offer you any support for the HTML that's inside of the string literal. 
+        And finally, we have the same markup twice, both in the starting HTML and in the JavaScript. 
+        (Granted, we could clean that up by adding the first line in through JavaScript, but that's not really the best solution here.)
+
+        A better way to solve this problem would be to clone the starting HTML that makes up the user information form, and then use that clone to add the new content. 
+        (The HTML below hasn't changed from above, it's copied for readability.)
+
+        <button type="button" id="add-line">Add new line</button>
+        <div id="container">
+            <div class="user-entry">
+                <label>Email:</label>
+                <input type="email" />
+                <label>Password:</label>
+                <input type="password" />
+            </div>
+        </div>
+        $(function() {
+            $userForm = $('.user-entry').clone();
+            $('#add-line').click(function() {
+                $('#container').append($userForm.clone());
+            });
+        });
+        Let's break down the code just a bit here. For starters, you'll notice on line 2 that we are grabbing a clone of the item with the class of user-entry. 
+        This contains the form for inputting the user. You'll also notice we use a variable that starts with $. 
+        This is common in jQuery to indicate the object is a jQuery object.
+
+        On line 4, you'll notice we use the $userForm in append to add the markup (or jQuery object) we copied earlier. 
+        What you'll also notice is that we're calling clone() a second time. The reason for this is how JavaScript passes parameters. 
+        When you're working with an object, JavaScript passes a reference to the object, not a copy of the object.
+        This would mean that we've added in a pointer to the clone we created earlier, not a brand new copy. 
+        The end result is that if we did not call clone() a second time, we'd be trying to add the exact same object into the container again, not a brand new copy. 
+        By calling clone() again on line 4, we pass in a copy of our user form, rather than a pointer to the one we already used.
+
+        Below is a Pen with the code. You can use this to play around with the JavaScript, and see the impact removing clone has.
+
+    -->
+    <div class="title"> Cloning </div>
+    <button type="button" id="add-line">Add new line</button>
+    <div id="container">
+        <div class="user-entry">
+            <label>Email:</label>
+            <input type="email" />
+            <label>Password:</label>
+            <input type="password" />
+        </div>
+    </div>
 
 
 
@@ -137,17 +314,24 @@
     <p>  </p>
     <div>
  
-        <a href="https://codepen.io/GeekTrainer/pen/d95ba170fb444e4c530d3a07e6ef42ec">Event, delegation and one demonstrations</a>
+        <a href="https://codepen.io/GeekTrainer/pen/d95ba170fb444e4c530d3a07e6ef42ec">Event, delegation and one demo</a>
     </div>
     <div>   
 
-        <a href="https://codepen.io/GeekTrainer/pen/1afc4d560d697b40f26e48b7b24a7f4e">DOM manipulation demos</a>
+        <a href="https://codepen.io/GeekTrainer/pen/1afc4d560d697b40f26e48b7b24a7f4e">DOM manipulation demo</a>
     </div>
     <div>   
-        <a href="https://codepen.io/GeekTrainer/pen/1ad611909eeab30a35f0ba0b0b44aa07">Wrapping functions</a>
+        <a href="https://codepen.io/GeekTrainer/pen/1ad611909eeab30a35f0ba0b0b44aa07">Wrapping functions demo</a>
     </div>
 
-    
+    <div>   
+        <a href="https://codepen.io/GeekTrainer/pen/c63b20762548ce9076ab71cba35a987f">Cloning demo</a>
+    </div>
+
+    <div>   
+        <a href="https://codepen.io/GeekTrainer/pen/7af3c7e104c133b6f5f0417af241b1dd"> Combining cloning and animations demo</a>
+    </div>
+
     <p>  </p>
     <p class="title"> _</p>
 
@@ -587,9 +771,150 @@
                 $('#additional-information').show(750);
             }); 
         });
+
         /*You'll notice that we're setting the div element with additional-information as its ID to display:none to start. 
         The display property is what show will modify. We're then setting up the click event handler to call show, which will then cause the item to display.
         */
+
+        //*********************************************************************************************************************************
+
+        /*
+        Fading and sliding
+        Fading
+        Both show and hide have a vertical animation. The new content sort of "rolls" onto the screen, or "rolls" up from the screen. 
+        If you don't want that additional animation, and just want the item to slowly appear or disappear, you can use fading.
+        
+        fadeIn, fadeOut and fadeToggle
+        Like their show/hide counterparts, fadeIn and fadeOut will display and hide an item respectively. 
+        And, like toggle, fadeToggle will reverse the current state of the item.
+
+        The fading functions perform their work by both modifying the CSS display property, and animates the item by modifying its opacity. 
+        If you want an item to start as hidden by default, and display it using fadeIn, you only need to set display: 
+        none; there is no need to modify the starting opacity.
+
+        Like all animation functions, the fading functions accept various parameters with the most common being the length of time (in milliseconds). 
+        Also, the fading functions return a promise, which we'll explore in Module 3.
+
+        Sliding
+        Unlike the other animations, the sliding functions cause the entire item to either slide down or slide up.
+
+        Keeping with the conventions we've already seen, slideDown will cause an item to appear, slideUp will cause it to disappear, 
+        and slideToggle will cause change its state.
+
+        The sliding functions perform their work by both modifying the CSS display property, and animates the item by modifying its position. 
+        If you want an item to start as hidden by default, and display it using slideDown, you only need to set display: none; there is no need to modify the starting position.
+
+        Like all animation functions, the sliding functions accept various parameters with the most common being the length of time (in milliseconds). 
+        Also, the sliding functions return a promise, which we'll explore in Module 3.
+
+        */
+
+        $("#fadingBtn").click(function(){
+            //$("#fadingBox").fadeOut(1000);
+            //$("#fadingBox").fadeToggle(1000);
+            //$("#fadingBox").slideUp(1000);
+            $("#fadingBox").slideToggle(1000);    
+        });
+
+        /*
+            Empty, removing and replacing (err)
+            <div>
+                <button id="errBtn" class="btn" type="button"> Execute</button>
+                <div id="errContent">
+                    <div>Some cool content</div>
+                    <div>Some more cool content</div>
+                </div>
+            </div>
+        */
+
+        $("#errBtn").click(function(){
+            //$("#errContent").remove();
+            //$("#errContent").empty();
+            //$("#errContent").replaceWith("<div> My New Content </div>");
+            $("<div>My New Content</div>").replaceAll("#errContent");   
+        });
+
+
+
+        //***************************************************************************************************************************************
+
+
+        /*
+        Cloning and cloning+animating
+  
+        The main reason to use jQuery is because it makes "day to day" programming in JavaScript much easier, 
+        offering functionality and capabilities common to other programming environments. Because the basic operations become that much easier, 
+        it allows you to focus your attention on the cooler features you wish to add to your pages, adding interactivity, 
+        and making your page seem more like a locally installed application.
+
+        This is where the humble function clone comes into play. clone allows you to make a copy of jQuery objects.
+        */
+
+        /*
+        It would work. But you've got a large string literal in JavaScript, which can be tough to debug when you got to make changes. 
+        In addition, whatever tool you're using to create your page isn't going to be able to offer you any support for the HTML that's inside of the string literal. 
+        And finally, we have the same markup twice, both in the starting HTML and in the JavaScript. 
+        (Granted, we could clean that up by adding the first line in through JavaScript, but that's not really the best solution here.)
+        */
+
+        /*
+        A better way to solve this problem would be to clone the starting HTML that makes up the user information form, and then use that clone to add the new content. 
+        (The HTML below hasn't changed from above, it's copied for readability.)
+        */
+
+        $(function(){
+            var $userForm = $('.user-entry').clone(); //first time we call clone
+            $('#add-line').click(function() {
+                //NOT GOOD
+                //$('#container').append('<div class="user-entry"> <label>Email:</label> <input type="email" /> <label>Password:</label> <input type="password" /> </div>');
+                //BETTER WAY
+                //var $userForm = $('.user-entry').clone(); <-- Here, this line is gonna create a exponential number of objects.
+                //Here we can make changes over the userForm clone and after append the modificated clone
+
+                //$copy = $userForm.clone(); //line 4 (second time we call clone)
+                //$copy.attr("id","someVarNumber");
+                //$('#container').append($copy);
+
+                //ATENTION
+                /*
+                On line 4, you'll notice we use the $userForm in append to add the markup (or jQuery object) we copied earlier. 
+                What you'll also notice is that we're calling clone() a second time. The reason for this is how JavaScript passes parameters. 
+                When you're working with an object, JavaScript passes a reference to the object, not a copy of the object. 
+                This would mean that we've added in a pointer to the clone we created earlier, not a brand new copy. 
+                The end result is that if we did not call clone() a second time, we'd be trying to add the exact same object into the container again, 
+                not a brand new copy. 
+                By calling clone() again on line 4, we pass in a copy of our user form, rather than a pointer to the one we already used.
+                */
+
+                //Combining cloning and animations
+
+                /*
+                Now that we know how to clone items to simplify creation of dynamic content, 
+                and how to animate them to add some additional punch to our pages, let's see how we could bring it all together.
+                
+                Let's modify our code to provide animation to the new elements. We'll start making sure our cloned item is hidden by using the css function. 
+                Because $userForm is a jQuery object, manipulate it just like any other jQuery object.
+                
+                When we call append, we know that the new item is going to be the last element in the container. We can access container's children by using children, and access the last one by calling last.
+
+                We also know that the item is hidden, because we set it to be hidden. If we call show, it will then display, with the animation. 
+                We can accomplish this by cloning it into a variable, adding the new variable, and then calling show on the new variable.
+                */
+
+                $copy = $userForm.clone(); //line 4 (second time we call clone)
+                $copy.attr("id","someVarNumber");
+                $copy.css("display","none"); //<-- new
+                $('#container').append($copy);
+                $copy.show(1000);
+            }); 
+        });
+
+
+          
+
+        //***************************************************************************************************************************************
+
+
 
     </script>
 
