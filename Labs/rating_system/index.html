@@ -1,0 +1,112 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        body {
+                font-family: Verdana;
+            }
+            h1, h2, h3 {
+                color: darkblue;
+            }
+            .rating-circle {
+                height: 2em;
+                width: 2em;
+                border: .1em solid black;
+                border-radius: 1.1em;
+                display: inline-block;
+                margin: 0;
+                padding: .1em;
+            }
+
+            .rating-hover {
+                background-color: yellow;
+            }
+
+            .rating-chosen {
+                background-color: green;
+            }
+        </style>
+</head>
+
+<body>
+    <h1>Contoso Web Developer Conference</h1>
+    <h2>Finding elements using jQuery</h2>
+    <div>This session is about identifying elements using jQuery methods and selectors.</div>
+    <h3>Rate this session</h3>
+    <div id="rating-container">
+        <div class="rating-circle"></div>
+        <div class="rating-circle"></div>
+        <div class="rating-circle"></div>
+        <div class="rating-circle"></div>
+        <div class="rating-circle"></div>
+    </div>
+
+    <p></p>
+    <div>
+        <label for="max-value">Enter max value:</label>
+        <input type="text" id="max-value" />
+        <button type="button" id="update-max-value">Update max value</button>
+    </div>
+
+</body>
+<footer>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js"></script>
+    <script>
+        function validateInputTextAsIntegerGreaterThanZero(oldValue, inputText) {
+            var n = parseInt(inputText);
+            if (Number.isInteger(n) && n >= 1) {
+                return n;
+            }
+            return oldValue;
+        }
+    </script>
+    <script>
+        // your answer would go here
+        var nchosen = 0;
+        var nMaxCircles = 1;
+        var $ratingCircle = $('.rating-circle:first').clone(); //first time we call clone
+        var $ratingCircleStyle = $(".rating-circle").clone();
+
+        $(document).ready(function () {
+            $("#rating-container")
+            .delegate(".rating-circle","mouseenter",function () {
+                    $(this).parent().find(".rating-circle").removeClass("rating-chosen");
+                    //console.log("mouse-enter");
+                    $(this).addClass("rating-hover");
+                    $(this).prevAll().addClass("rating-hover");
+                    $(this).nextAll().removeClass("rating-hover");
+                })
+            .delegate(".rating-circle","mouseout",function () {
+                    //console.log("mouseout");
+                    $(this).parent().find(".rating-circle").removeClass("rating-hover");
+                    $(this).parent().find(":lt(" + nchosen + ")").addClass("rating-chosen");
+                })
+            .delegate(".rating-circle","click",function () {
+                    //console.log("click");
+                    $(this).parent().find(".rating-circle").removeClass("rating-hover rating-chosen");
+                    nchosen = $(this).prevAll().addClass("rating-chosen").length;
+                    nchosen += $(this).addClass("rating-chosen").length;
+                });
+
+            //Manage the change of the max-value input (max number of circles) 
+            $("#update-max-value").click(function () {
+                nchosen = 0;
+                var inputText = $("#max-value").val();
+                nMaxCircles = validateInputTextAsIntegerGreaterThanZero(nMaxCircles, inputText);
+                //empty the rating container
+                $("#rating-container").empty();
+                for (i=1;i<=nMaxCircles;i++)
+                {
+                    var $copy = $ratingCircle.clone();                  
+                    $("#rating-container").append($copy);   
+                }
+                //$(".rating-circle").append($ratingCircleStyle);  
+            });
+
+        });
+    </script>
+</footer>
+
+</html>
