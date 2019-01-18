@@ -45,10 +45,15 @@
     <p></p>
     <div>
         <label for="max-value">Enter max value:</label>
-        <input type="text" id="max-value" />
+        <input type="text" id="max-value" >
         <button type="button" id="update-max-value">Update max value</button>
     </div>
 
+    <div> 
+        <p></p>
+        <button type="button" id="save-rating" > Save rating</button>
+    </div>
+    <div id="output"></div>
 </body>
 <footer>
 
@@ -68,6 +73,8 @@
         var nMaxCircles = 1;
         var $ratingCircle = $('.rating-circle:first').clone(); //first time we call clone
         var $ratingCircleStyle = $(".rating-circle").clone();
+        var url = "http://jquery-edx.azurewebsites.net/api/Rating";
+        var wrongURL = "http://jquery-edx.azurewebsites.net/api/Ratings";
 
         $(document).ready(function () {
             $("#rating-container")
@@ -104,6 +111,36 @@
                 }
                 //$(".rating-circle").append($ratingCircleStyle);  
             });
+
+            //Manage the save-rating button events
+            $("#save-rating").click(function(){
+                //Verify that is rated 
+                if ($("#rating-container").children(".rating-chosen").length == 0) 
+                {
+                    alert("Please, rate first.");
+                    return;
+                }
+                //create JSON Object
+                var jObject = {value: nchosen,maxValue: $("#max-value").val()};
+
+                //send post call to the server
+                $.post(url,jObject)
+                .done(function(data){
+                    $("#output").text(JSON.stringify(data));
+                })
+                .fail(function(data){
+                    
+                    $("#output").val("Call failed: " + status);
+                })
+                .progress(function(data){
+                    $("#output").val("Progressing..." + data);    
+                });
+                
+            });
+
+            //Initialize the rating-system
+            $("#max-value").val("5");
+            $("#update-max-value").click();
 
         });
     </script>

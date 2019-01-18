@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hello JQuery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .title {
+            background-color: lightblue;
+        }
+        .hidden { 
+            display: none; 
+        }
+        .square {
+            height: 50px;
+            width: 50px;
+            background-color: #555;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="title">focus and blur</div>
+    <!-- sample HTML -->
+    <!--focus and blur -->
+    <div>
+        <label id="fbLabel" for="phone">Phone</label>
+        <input id="fbInput" type="text" id="phone" />
+        <span id="phone-help"></span>
+    </div>
+  
+    <div class="title">mouseenter and mouseleave</div>
+
+    <!-- sample HTML -->
+    <!--mouseenter and mouseleave -->
+    <div>
+        <span id="target">Basic data</span>
+        <span id="target-help"></span>
+    </div>
+
+    <!--Delegation and dynamic elements-->
+    <!-- sample HTML -->
+
+    <div class="title">Delegation and dynamic elements</div>
+
+    <button id="button1">Click</button>
+    <div id="placeholder"></div>
+
+    <button id="button2">Click</button>
+    <div id="placeholder2"></div>
+
+
+    <!-- Single execution 
+        When you register an event handler with an object, that event handler will remain with that object until you unregister it, which you could do with a function such as off.
+        However, what if you know in advance you only want the event to execute once? For instance, if you're creating a button that will submit a form, you only want the user to click the button once. 
+        Wouldn't it be great if you could tell jQuery to only use the event handler one time?
+        Fortunately, you can!
+    -->
+    <div class="title">Single execution</div>
+    <button id="single">This only works once</button>
+    <div id="output"></div>
+
+    <!-- Triggering events
+        Typically events are raised by the user performing the action themselves. 
+        But there may be scenarios where you want to raise the event programatically. 
+        For example, you may want to allow a user to click on a button to refresh data, or perform the operation on your own through code. 
+        jQuery allows you to raise events through one of three methods, 
+        either the registration method, such as click, or one of two trigger methods: trigger or triggerHandler.
+    -->
+    <div class="title">Triggering events</div>
+    <button type="button" class="b" id="first">First button</button>
+    <button type="button" class="b" id="Second">Second button</button>
+    <button type="button" class="b" id="trigger">trigger</button>
+    <button type="button" class="b" id="trigger-handler">triggerHandler</button>
+
+
+    <!--Manipulating the DOM 
+    As we've already seen, html and text can be used to update the page. 
+    The problem with those functions, however, is those functions replace the contents of the element they're called on, rather than modifying the content. 
+    You could, I suppose, keep appending text, but after a while your code will fall under its own weight.
+    jQuery offers several functions to easily manipulate the DOM.
+    -->
+    <div class="title">Manipulating the DOM with prepend-prependTo and append-appendTo</div>
+    <div id="target2">
+        <div>existing content</div>
+    </div>
+
+
+    <div class="title">Manipulating the DOM with afer-insertAfter and before-insertBefore</div>
+    <div id="target3">
+        <div>existing content</div>
+    </div>
+
+    <!-- Wrapping content
+    Wrapping existing content with new content
+    There will be times you'll need to manipulate the DOM by surrounding existing content with a new element. 
+    jQuery provides several wrapping functions to perform that type of an operation.-->
+    <div class="title">Wrapping content</div>
+    <div id="wrap-me">
+        <div class="demo">Item one</div>
+        <div class="demo">Item two</div>
+    </div>
+
+    <!-- Animations -->
+    <div class="title">Animations</div>
+    <button type="button" id="btn-toggle">Toggle</button>
+    <div id="target4">Show or hide</div>
+
+
+    <!-- Animatyins in action
+    Animations in action
+    In the prior demonstrations and videos, we saw how to use show, hide and toggle to easily modify the visibility of an item, 
+    while also adding a little bit of animation to the UI. 
+    While this is certainly a neat trick, there's a very good chance you'll want to start a UI with a section already hidden.
+    -->
+    
+    <div class="title"> Animations in action</div>
+    <form>
+        <div>
+            <label id="nameLabel">Name:</label>
+            <input id="nameInput" type="text" />
+        </div>
+        <button type="button" id="show-additional-information">
+            Show additional information
+        </button>
+        <div id="additional-information" class="hidden">
+            <label id="aiLabel">Additional information:</label>
+            <input id="aiInput" type="text" />
+        </div>
+    </form>
+
+    <!-- 
+        Fading and sliding
+        Fading
+        Both show and hide have a vertical animation. The new content sort of "rolls" onto the screen, or "rolls" up from the screen. 
+        If you don't want that additional animation, and just want the item to slowly appear or disappear, you can use fading.
+
+        fadeIn, fadeOut and fadeToggle
+        Like their show/hide counterparts, fadeIn and fadeOut will display and hide an item respectively. 
+        And, like toggle, fadeToggle will reverse the current state of the item.
+
+        The fading functions perform their work by both modifying the CSS display property, and animates the item by modifying its opacity. 
+        If you want an item to start as hidden by default, and display it using fadeIn, you only need to set display: none; 
+        there is no need to modify the starting opacity.
+
+        Like all animation functions, the fading functions accept various parameters with the most common being the length of time (in milliseconds). 
+        Also, the fading functions return a promise, which we'll explore in Module 3.
+
+        Sliding
+        Unlike the other animations, the sliding functions cause the entire item to either slide down or slide up.
+
+        Keeping with the conventions we've already seen, slideDown will cause an item to appear, slideUp will cause it to disappear, and slideToggle will cause change its state.
+
+        The sliding functions perform their work by both modifying the CSS display property, and animates the item by modifying its position. 
+        If you want an item to start as hidden by default, and display it using slideDown, you only need to set display: none; 
+        there is no need to modify the starting position.
+
+        Like all animation functions, the sliding functions accept various parameters with the most common being the length of time (in milliseconds). 
+        Also, the sliding functions return a promise, which we'll explore in Module 3.
+    -->
+    <div class="title"> Fading </div>
+    <div>
+        <button id="fadingBtn" class="btn" type="button"> Execute</button>
+        <div id="fadingBox" class="square"> Demo content</div>
+    </div>
+    
+
+    <!--
+        Removing and replacing items
+        Besides just creating new content, there will be times when you want to remove existing content, or replace content with new content. 
+        As you might have guessed, jQuery offers you this power as well.
+
+        remove and empty
+        Both remove and empty completely delete items from the DOM. 
+        The difference between the two is what they delete. 
+        In the case of remove, it will delete the item you target, while empty deletes the contents of the item you target.
+
+        Consider the following starting HTML
+
+        <div id="target">
+            <div>Some cool content</div>
+            <div>Some more cool content</div>
+        </div>
+        If you called $('#target').remove(), the resulting HTML would be, well, nothing. The entire contents of the sample are removed.
+
+        Contrast that with calling $('#target').empty(). empty deletes the contents of the target, so the resulting HTML would be as follows
+
+        <div id="target">
+        </div>
+        replaceAll and replaceWith
+        If you wish to replace existing content with new content, jQuery offers replaceAll and replaceWith. 
+        In both cases, you'll provide what existing content you wish to replace, and what new content you wish to use. 
+        The difference between the two is the order in which you pass the existing and new content.
+
+        If you had the following starting HTML...
+
+        <div id="target">
+            <div>Some cool content</div>
+            <div>Some more cool content</div>
+        </div>
+        ...and you wanted to finish with the following HTML...
+
+        <div>NEW content</div>
+        ...then either method below would work.
+
+        // replaceWith replaces the content on the left with the new content in the parameter
+        $('#target').replaceWith('<div>NEW content</div>');
+
+        // replaceAll replaces the target in the parameter with the content on the left
+        $('<div>NEW content</div>').replaceAll('#target');
+        NOTE When using either replaceAll or replaceWith, the entire element is replaced, not just the contents of the element. Use both functions with caution.
+
+        Consider the following starting HTML
+    -->
+    <div class="title"> Empty, removing and replacing</div>
+    <div>
+        <button id="errBtn" class="btn" type="button"> Execute</button>
+        <div id="errContent">
+            <div>Some cool content</div>
+            <div>Some more cool content</div>
+        </div>
+    </div>
+
+
+    <!--
+        Cloning
+
+        Clone
+        The main reason to use jQuery is because it makes "day to day" programming in JavaScript much easier, 
+        offering functionality and capabilities common to other programming environments. 
+        Because the basic operations become that much easier, it allows you to focus your attention on the cooler features you wish to add to your pages, 
+        adding interactivity, and making your page seem more like a locally installed application.
+
+        This is where the humble function clone comes into play. clone allows you to make a copy of jQuery objects.
+
+        clone in the real world
+        There are several scenarios in which clone simplifies content creation. 
+        Let's say you were building a page to allow an administrator to create email addresses and passwords. 
+        You'd like to ensure the administrator can create as many accounts as they would like on one page, 
+        and be able to send up all of the information to the server in one round trip, rather than using Ajax calls or submitting the form for each account.
+
+        This requires the ability to dynamically add labels and textboxes. You could do that this way
+
+        <button type="button" id="add-line">Add new line</button>
+        <div id="container">
+            <div class="user-entry">
+                <label>Email:</label>
+                <input type="email" />
+                <label>Password:</label>
+                <input type="password" />
+            </div>
+        </div>
+        $(function() {
+            $('#add-line').click(function() {
+                $('#container').append('<div class="user-entry"> <label>Email:</label> <input type="email" /> <label>Password:</label> <input type="password" /> </div>');
+            });
+        });
+        It would work. But you've got a large string literal in JavaScript, which can be tough to debug when you got to make changes. 
+        In addition, whatever tool you're using to create your page isn't going to be able to offer you any support for the HTML that's inside of the string literal. 
+        And finally, we have the same markup twice, both in the starting HTML and in the JavaScript. 
+        (Granted, we could clean that up by adding the first line in through JavaScript, but that's not really the best solution here.)
+
+        A better way to solve this problem would be to clone the starting HTML that makes up the user information form, and then use that clone to add the new content. 
+        (The HTML below hasn't changed from above, it's copied for readability.)
+
+        <button type="button" id="add-line">Add new line</button>
+        <div id="container">
+            <div class="user-entry">
+                <label>Email:</label>
+                <input type="email" />
+                <label>Password:</label>
+                <input type="password" />
+            </div>
+        </div>
+        $(function() {
+            $userForm = $('.user-entry').clone();
+            $('#add-line').click(function() {
+                $('#container').append($userForm.clone());
+            });
+        });
+        Let's break down the code just a bit here. For starters, you'll notice on line 2 that we are grabbing a clone of the item with the class of user-entry. 
+        This contains the form for inputting the user. You'll also notice we use a variable that starts with $. 
+        This is common in jQuery to indicate the object is a jQuery object.
+
+        On line 4, you'll notice we use the $userForm in append to add the markup (or jQuery object) we copied earlier. 
+        What you'll also notice is that we're calling clone() a second time. The reason for this is how JavaScript passes parameters. 
+        When you're working with an object, JavaScript passes a reference to the object, not a copy of the object.
+        This would mean that we've added in a pointer to the clone we created earlier, not a brand new copy. 
+        The end result is that if we did not call clone() a second time, we'd be trying to add the exact same object into the container again, not a brand new copy. 
+        By calling clone() again on line 4, we pass in a copy of our user form, rather than a pointer to the one we already used.
+
+        Below is a Pen with the code. You can use this to play around with the JavaScript, and see the impact removing clone has.
+
+    -->
+    <div class="title"> Cloning </div>
+    <button type="button" id="add-line">Add new line</button>
+    <div id="container">
+        <div class="user-entry">
+            <label>Email:</label>
+            <input type="email" />
+            <label>Password:</label>
+            <input type="password" />
+        </div>
+    </div>
+
+
+    <!-- 
+
+    Introducing Ajax
+
+    Making calls to the server
+    Typically, when we make a call to the server, we need to refresh the entire page. Not only can this impact performance, 
+    it can change our user's perception of our pages. 
+    In addition, as developers, we'd like to be able to incorporate server-side resources into our pages, 
+    allowing us to update individual portions of the page with new data, rather than updating the entire page. 
+    This is where the XmlHttpRequest object comes into play and, Ajax.
+
+    Asynchronous JavaScript and XML (Ajax)
+    Ajax is a set of technologies that act together to make it easier for us as developers to make calls to server resources from JavaScript. 
+    Breaking down the three words that make up the acronym, you'll notice we have asynchronous (which jQuery simplifies through the use of promises), 
+    JavaScript (which we already know), and XML. XML is probably the one that doesn't fit, as XML is typically not a preferred mechanism for serialization. 
+    As we've seen, we typically want to use JSON, as its more compact and native to JavaScript.
+
+    Basic data retrieval
+    The most basic Ajax operation we can perform using jQuery is get. get contacts the URL we provide, 
+    and passes the string the server returns into the parameter we'll use for our event handler. get accepts multiple parameters, 
+    but the two you'll most commonly use are the URL you wish to call, and an event handler that will be executed on success.
+
+    $.get(
+        'some-url', // The URL to call
+        function(data) { // Success event handler
+            // The data parameter contains the string
+            $('#output').text(data);
+        }
+    );
+    jQuery Ajax and promises
+    All jQuery Ajax calls return a jQuery promise. This means you can use done for your success event handler, 
+    and fail to catch any errors. The two code samples perform the same operations.
+
+    // Option one (pass the success function as a parameter)
+    $.get('some-url', function(data) { $('#output').text(data); });
+
+    // Option two (use the done function of the promise)
+    $.get('some-url').done(function(data) { $('#output').text(data); });
+    -->
+
+    <div class="title"> AJAX </div>
+    <p></p>
+
+
+    <!--
+
+        Retrieving JSON objects
+        As we've discussed, JavaScript offers native support for serialization to and from JSON. 
+        jQuery builds on top of that, allowing you to easily retrieve JSON objects from the server by using getJSON.
+
+        getJSON
+
+        To retrieve a JSON object, you can use getJSON. getJSON accepts several parameters, 
+        but the most common two that you'll provide are the URL you need to call, and an event handler for success. 
+        Just as we discussed with get, getJSON returns a promise, meaning you can use done and fail as an alternative.
+        Because getJSON is expecting JSON data, it automatically deserializes the object, meaning you do not need to call JSON.parse.
+        If you were calling a server that was going to return a Person object, with properties of firstName and lastName, 
+        you could use the sample code below.
+
+
+        $.getJSON('/api/Demo', function (person) {
+            $('#first-name').val(person.firstName);
+            $('#last-name').val(person.lastName);
+        }); 
+    -->
+
+    <div class="title"> Retrieving JSON objects </div>
+    <p></p>
+
+    <!--
+        Making server calls
+
+        At this point, if you're new to making server calls through JavaScript or other technologies, 
+        you might have a few questions about how you're supposed to know where the data is, what URLs you should use, etc. 
+        The answer is, well, it depends.
+
+        Finding the right URL
+        Probably the most common question I get as an instructor is, "How do I know where to go find data?" 
+        Fortunately this is a much easier question to answer than it seems, and it's in the form of a question, "What do you want to do?"
+
+        When you're trying to discover services that you can call, approach it like you would a user. For example, 
+        if I asked you, "Where do you go to track a package shipment?", you would give me a couple of sites I could use. 
+        Or, if I asked, "Where do you go to find out sports scores?", you would give me a couple of different sites.
+
+        You start by determining what data you need, and then starting your investigation that way. 
+        When you find a service that offers the necessary data, they will provide documentation, 
+        containing the URLs you need to call to obtain specific types of data, what the data will look like, etc. 
+        They'll often provide a sandbox as well that you can use to practice and play.
+
+        Most commonly you'll be calling your own server and accessing your own organization's data. 
+        Then the answer becomes even easier: talk to the developer who created the server side code that you need to call. 
+        They can provide all of the information you need.
+
+        To get technical
+        When we start digging into making server calls, retrieving and uploading data, things can get a bit confusing pretty quickly. 
+        You may have some questions about how things work behind the scenes. 
+        Below you'll find some basic information about various standards and how to use them. 
+        However, a full discussion on REST and other APIs is beyond the scope of the course.
+
+        Verbs
+        As we discussed in the prior module, HTTP offers several "verbs", with the two most common being GET and POST. 
+        Those two names can cause some confusion, as they both have meanings in English. Get of course means to retrieve something, 
+        and post means to put something somewhere. Unfortunately, from a technical sense, that is not what GET and POST mean when they're related to HTTP.
+
+        GET and POST in HTTP terms are about how to send data to the server, not a determination of the server sending you data. 
+        The server will always send you data, be it a status code, string data, or a JSON object. 
+        GET and POST determine how we as the caller are going to send data to the server.
+
+        GET limits us to sending data in the URL only. Because the data can only be in the URL,
+        we are not only restricted in the amount of data we're able to send, but in the data types. 
+        Large amounts of data cannot be sent in the URL.
+
+        POST on the other hand allows us to send data both in the URL, but also in what's known as the header. 
+        The header is information that's sent behind the scenes from the client to the server, 
+        and can be used to send almost any type of data, including binary data.
+
+        But, and I want to repeat this, both GET and POST return data. The difference between the two is how we're allowed to send data to the server.
+
+        HTTP and REST APIs
+        As we discussed above, if you want to access data on a particular service, and need to figure out how to send data, 
+        what URLs to use, what data you're able to send, and what data will be sent to you, you'll want to check the documentation provided by the service.
+
+        Needless to say, that can get a bit overwhelming, as anyone who is implementing a service can create their own API. 
+        Each API can be completely different than any other API that's been implemented. To try and provide some consistency, 
+        some standards have been set around HTTP calls.
+
+        The most common set of rules is in working with data. HTTP provides several verbs, including GET, POST, PUT and DELETE. 
+        Many servers perform specific operations behind the scenes based on the verb that you use. GET will retrieve objects, 
+        POST will create a new object, PUT will update an existing object, and DELETE will delete an object.
+
+        Building upon those common operations, the W3C has established a specification called REST. 
+        REST provides for various standards to provide even more consistency when making server calls.
+
+        The big thing to remember is nobody is obligated to follow any of these standards. 
+        You will find that most services will make good faith efforts to abide by the guidelines set forth by REST, 
+        but there may be differences in their implementations.
+    -->
+
+    <div class="title"> Making Server Calls </div>
+    <p></p>
+
+
+    <!--
+        Posting data
+        If the service you're using follows standard REST practices, you'll notice that you can create a new object by calling POST. 
+        Or, if you're trying to upload a binary object, such as an image, you're forced to use POST, as GET won't allow that type of data to be uploaded.
+        Start events
+        The two starting events are ajaxStart and ajaxSend. ajaxStart is raised when the first Ajax call is being made. 
+        ajaxSend is raised each time an Ajax call is made.
+
+        Completion events
+        jQuery Ajax offers two main events when each Ajax call is finished, ajaxSuccess, which is raised when a call succeeds, 
+        and ajaxError, which is raised when a call fails.
+
+        ajaxComplete is raised when each Ajax call completes, regardless of success or failure. ajaxStop is raised when all calls are completed.
+
+        $(document).ajaxSend(function () {
+            // raised when a call starts
+            $('#status').append('<div>Call started</div>');
+        }).ajaxComplete(function () {
+            // raised when a call completes
+            $('#status').append('<div>Call completed</div>');
+        });
+    -->
+
+    <p></p>
+    <div class="title"> Posting Data</div>
+
+        <!--
+
+        Ajax events
+        When making Ajax calls, you may need to update page content or change the availability of controls such as buttons when calls start or complete. 
+        jQuery Ajax offers several global events.
+
+        Start events
+        The two starting events are ajaxStart and ajaxSend. ajaxStart is raised when the first Ajax call is being made. ajaxSend is raised each time an Ajax call is made.
+
+        Completion events
+        jQuery Ajax offers two main events when each Ajax call is finished, ajaxSuccess, which is raised when a call succeeds, and ajaxError, which is raised when a call fails.
+
+        ajaxComplete is raised when each Ajax call completes, regardless of success or failure. ajaxStop is raised when all calls are completed.
+
+        $(document).ajaxSend(function () {
+            // raised when a call starts
+            $('#status').append('<div>Call started</div>');
+        }).ajaxComplete(function () {
+            // raised when a call completes
+            $('#status').append('<div>Call completed</div>');
+        });
+    -->
+
+    <p></p>
+    <div class="title"> AJAX Events</div>
+    
+
+    <!--
+        Dynamically loading data
+        Up until now, everything that we've seen has been about sending and retrieving objects, or basic strings. 
+        But what if we want to load HTML or JavaScript dynamically. Fortunately, jQuery provides those capabilities as well.
+
+        Dynamically loading data
+
+        Loading HTML
+        load will call the URL provided, obtain the HTML, and place it in the targeted item.
+
+        $('#target').load('some-url.html');
+        Loading and executing JavaScript
+        If you need to load a JavaScript file dynamically, you can use getScript. 
+        One important note about getScript is it downloads and executes the script when it's called.
+
+        $.getScript('some-url.js');
+    -->
+
+    <p></p>
+    <div class="title"> Dinamically loading data</div>
+
+
+
+
+    <p></p>
+    <div class="title"> CodePen Related Links</div>
+
+    <p>  </p>
+    <div>
+ 
+        <a href="https://codepen.io/GeekTrainer/pen/d95ba170fb444e4c530d3a07e6ef42ec">Event, delegation and one demo</a>
+    </div>
+    <div>   
+
+        <a href="https://codepen.io/GeekTrainer/pen/1afc4d560d697b40f26e48b7b24a7f4e">DOM manipulation demo</a>
+    </div>
+    <div>   
+        <a href="https://codepen.io/GeekTrainer/pen/1ad611909eeab30a35f0ba0b0b44aa07">Wrapping functions demo</a>
+    </div>
+
+    <div>   
+        <a href="https://codepen.io/GeekTrainer/pen/c63b20762548ce9076ab71cba35a987f">Cloning demo</a>
+    </div>
+
+    <div>   
+        <a href="https://codepen.io/GeekTrainer/pen/7af3c7e104c133b6f5f0417af241b1dd"> Combining cloning and animations demo</a>
+    </div>
+
+    <div>   
+        <a href="https://codepen.io/GeekTrainer/pen/2d155f63db244536304339a871121109"> Serialization and Deserialization demo</a>
+    </div>
+
+    
+
+    <p>  </p>
+    <p class="title"> _</p>
+
+
+
+</body>
+<footer>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js"></script>
+    <script>
+        function executeCommand(command){
+            setTimeout(function(){
+                eval(command);      
+            },2000);    
+        }
+        function alerta() { alert('ALERTAAAAA!!'); }
+
+    </script>
+    <script>
+        //$(document).ready(myFunction());
+        
+
+        //sample JavaScript
+        //focus and blur 
+        $('#phone')
+        .focus(function() {
+            // Control has focus. Display help
+            $('#phone-help').text('Please enter your phone number as all digits');
+        })
+        .blur(function() {
+            // Control lost focus. Clear help
+            $('#phone-help').text('');
+        });
+
+        //sample Javascript
+        //mouseenter and mouseleave and hover
+        $('#target')
+        .mouseenter(function() {
+            $('#target-help').text('More data');
+        })
+        .mouseleave(function() {
+            $('#target-help').text('');
+        });
+
+        //sample Javascript
+        //hover
+        //The hover event is logically equivalent to both the mouseenter and mouseleave events. What makes hover special is you can actually register two event handlers in one call. The first parameter hover accepts is for mouseenter, or when the hover begins, and the second parameter is for mouseout.
+
+        $('#target')
+        .hover(function() {
+            // mouseenter
+            $('#target-help').text('More data');
+        }, function() {
+            // mouseleave
+            $('#target-help').text('');
+        });
+
+        //sample Javascript
+        //val
+        $("#phone").val("holllalalalal");
+
+        setTimeout(function(){
+            $("#phone").val("");        
+        },2000);
+
+        // write text out to the screen
+        // this will be displayed as the literal
+        // value
+        // the text value will not be bolded
+
+        $('#fbLabel').text('<strong>value</strong>');
+
+        // write text out to the screen
+        // this will be displayed as value
+        // with the word bolded
+        
+        setTimeout(function(){
+            $('#fbLabel').html('<strong>value</strong>');         
+        },2000);
+
+        // Change an item's color to red
+        $('#target').css('color', 'red');
+        $('#target').css('background-color', 'yellow');
+        
+        //this attr is going to replace the style attribute, not update it, so any existing styles would be lost. 
+        executeCommand("$('#target').attr('style', 'color: red')");
+
+        //on and off
+
+        $('#target').on('click', alerta);
+        $('#target').off('click', alerta);
+        
+        //Delegation and dynamic elements
+
+        /*Delegating event handlers with on
+        With jQuery 1.7, delegate is superseded by on. You may have noticed in the prior unit on had a selector parameter as well. 
+        If you do not provide that selector, on behaves like a normal event handler registration. 
+        But, if you do provide a selector, it will use delegation to register the event handlers.
+
+        One important thing to note is the order of parameters for on and delegate. 
+        With on, you list the events first and the selector second. With delegate, it's selector followed by events.
+        */
+
+        // Delegation (note the order of parameters)
+        //$(document).on('click', '#button1', function() {alert('hello'); });
+
+        // Semantically the same as above
+        // (note the order of parameters)
+        //$(document).delegate('#button2', 'click', function() { alert('hello'); });
+
+        $(function() {
+            // document.ready (on load)
+
+            // register a click event handler with all button elements
+            $('button[id=button1]').click(function() { alert('hello'); });
+
+            // create a new button that it will NO react under the click event
+            $('#placeholder').html('<button id=button1>New button</button>');
+        });
+
+        $(function() {
+            // document.ready (on load)
+
+            // register a click event handler with all button elements
+            $('body').delegate('button[id=button2]','click',function() { alert('hello'); });
+
+            // create a new button that it will react under the click event
+            $('#placeholder2').html('<button id=button2>New button2</button>');
+        });
+
+        //Single event execution
+        $(function() {
+            $('#single').one('click', function() {
+                $('#output').text($('#output').text()+'You clicked on the button');
+            });
+        });
+
+        /* Try to replace the function above for this one 
+        $(function() {
+            $('#single').on('click', function() {
+                $('#output').text($('#output').text()+'You clicked on the button');
+            });
+        });
+        I check what happens 
+        */
+        
+        /***************************************************************************************************
+
+        //Triggering events
+
+        /*Typically events are raised by the user performing the action themselves. But there may be scenarios where you want to raise the event programatically. 
+        For example, you may want to allow a user to click on a button to refresh data, or perform the operation on your own through code. 
+        jQuery allows you to raise events through one of three methods, either the registration method, such as click, or one of two trigger methods: trigger or triggerHandler.
+        */
+        
+        $(function() {
+            $('button.b').click(function() {
+                // display the id of the button
+                alert(this.id);
+            });
+
+            $('#trigger').click(function() {
+                // Would alert every button's id
+                // including the last two
+                //we will expect a never ending bucle of alerts
+                $('button.b').trigger('click');
+            });
+
+            // Would alert "first"
+            $('#trigger-handler').click(function() {
+                // Would alert "first"
+                $('button.b').triggerHandler('click');
+            });
+        });
+        
+        /*************************************************************************************
+
+        /*Manipulating the DOM
+
+        Internal DOM manipulation
+        If you wish to update the contents of an element by adding or removing elements, you can use append, appendTo, prepend and prependTo. 
+        Remember that the element you target will become the container for the new element. 
+        So using append will add a new element inside the target, not after the element. (There's another function for that.)
+
+        prepend and prependTo
+        prepend and prependTo add new content to the begining of the contents of a target. 
+        The difference between them is the order in which the parameters and target are passed in. The lines of code below are semantically identical.
+        */
+        // prepend is called on the target, and accepts the new content as the parameter
+        
+
+        $('#target2').prepend('<div>New content with prepend</div>');
+
+        // prependTo is called on the new content, and accepts the target as the parameter
+        $('<div>New content prependTo</div>').prependTo('#target2');
+
+        /*If you had the following starting HTML
+
+        And executed either of the lines of JavaScript above, the result would be as follows.
+
+        <div id="target">
+            <div>New content</div>
+            <div>existing content</div>
+        </div>
+        append and appendTo
+        append and appendTo add new content to the end of the contents of a target. 
+        The difference between them is the order in which the parameters and target are passed in. The lines of code below are semantically identical.
+        */
+
+        // append is called on the target, and accepts the new content as the parameter
+
+        $('#target2').append('<div>New content with append</div>');
+
+        // appendTo is called on the new content, and accepts the target as the parameter
+        $('<div>New content with appentTo</div>').appendTo('#target2');
+        /*If you had the following starting HTML
+
+        <div id="target">
+            <div>existing content</div>
+        </div>
+        And executed either of the lines of JavaScript above, the result would be as follows.
+
+        <div id="target">
+            <div>existing content</div>
+            <div>New content</div>
+        </div>
+        */
+        //************************************************************************************* 
+
+        //External DOM manipulation
+        /*
+        External DOM manipulation
+        Functions such as prepend add new content inside of the target, using the target as a container for the new content. 
+        If you wish to add new content before or after an existing element, jQuery provides after, insertAfter, before, and insertBefore.
+        */
+        
+        /*
+        after and insertAfter
+        after and insertAfter both add new content after the target, on the same level of the hierarchy, rather than inside the target. 
+        The difference between the two functions is the order of parameters and target.
+
+        // after is called on the target, and accepts the new content as a parameter
+        */
+        $('#target3').after('New content using after');
+
+        // insertAfter is called on the new content, and accepts the target as a parameter
+        $('New content using insertAfter').insertAfter('#target3'); // it seems it isn't run
+        /*If you had the following HTML as the starting point:
+
+        <div id="target">
+            <div>existing content</div>
+        </div>
+        //... calling either of the lines of JavaScript above would produce the following result:
+
+        <div id="target">
+            <div>existing content</div>
+        </div>
+        <div>New content</div>
+        before and insertBefore
+        before and insertBefore both add new content after the target, on the same level of the hierarchy, rather than inside the target. 
+        The difference between the two functions is the order of parameters and target.
+
+        // before is called on the target, and accepts the new content as a parameter*/
+        $('#target3').before('New content using before');
+
+        // insertBefore is called on the new content, and accepts the target as a parameter
+        $("New content using insertBefore").insertBefore("#target3"); // it seems it isn't run
+        /*If you had the following HTML as the starting point:
+
+        <div id="target">
+            <div>existing content</div>
+        </div>
+        ... calling either of the lines of JavaScript above would produce the following result:
+
+        <div>New content</div>
+        <div id="target">
+            <div>existing content</div>
+        </div>
+        */
+
+        //************************************************************************************* 
+
+        /* wrapping functions
+        
+        For the wrap and wrapAll demonstrations below, we'll be using this HTML as the starting point:
+
+        <div id="wrap-me">
+            <div class="demo">Item one</div>
+            <div class="demo">Item two</div>
+        </div>
+        wrap
+        The wrap function wraps each item with the element passed into the function. As a result, if you called:
+        */
+        //$('#wrap-me').wrap('<section></section>');
+        /*the result would be:
+
+        <section>
+            <div id="wrap-me">
+                <div class="demo">Item one</div>
+                <div class="demo">Item two</div>
+            </div>
+        </section>
+        Where things get a little more interesting is if you used a selector that returned multiple items. Imagine the following JavaScript:
+        */
+        //$('.demo').wrap('<section></section>');
+        /*The result would be:
+
+        <div id="wrap-me">
+            <section>
+                <div class="demo">Item one</div>
+            </section>
+            <section>
+                <div class="demo">Item two</div>
+            </section>
+        </div>
+        Notice that wrap will wrap each element returned by the selector with the new element.
+
+        wrapAll
+        wrapAll behaves differently. Rather than wrapping each returned element, wrapAll wraps all returned content with one new element. 
+        As a result, the JavaScript
+        */
+        //$('.demo').wrapAll('<section></section>');
+        /*would result in
+
+        <div id="wrap-me">
+            <section>
+                <div class="demo">Item one</div>
+                <div class="demo">Item two</div>
+            </section>
+        </div>
+        wrapInner
+        wrapInner is different from both wrap and wrapAll in that wrapInner operates on the children of the target, rather than on the target itself. 
+        If you started with the following HTML...
+        
+        <div id="">
+            <div>Item one</div>
+            <div>Item two</div>
+        </div>
+        ...and executed the JavaScript below...
+        */
+        $('.demo').wrapInner('<section></section>');
+        /*...the result would be:
+
+        <div id="">
+            <section>
+                <div>Item one</div>
+                <div>Item two</div>
+            </section>
+        </div>
+        */
+        //************************************************************************************* 
+        
+        /*
+        Introducing Animations
+        Up until now, whenever we've manipulated the DOM the results have just appeared. 
+        While this is just fine, it can sometimes be a bit jarring to the user. 
+        It would certainly be nice if we could have just a little animation, to either make our page look more professional, 
+        or to draw the user's attention to the new or updated content.
+
+        hide, show and toggle
+        jQuery offers many animations. 
+        The first two are hide and show. As you might suspect, hide causes something to disappear from the screen, while show causes something to appear. 
+        toggle, on the other hand, determines the current status of the item in question and changes it. 
+        So if the item was currently hidden, toggle would call show, and if the item was visible, toggle would call hide.
+
+        Behind the scenes, jQuery controls visibility by using the display property in CSS. When you hide and item, 
+        jQuery will store the current value of display (such as inline or block) and then set the display to none. 
+        When you call show, jQuery resets the display CSS property back to the value it had stored before.
+
+        hide, show and toggle all take several parameters, including a set of options that allow you to control things like "easing", 
+        which is how the animation is going to take place. 
+        Most commonly the only parameter you will provide is the duration you wish the animation to take place over, in milleseconds.
+
+        <div id="target">Show or hide</div>
+        <button type="button" id="btn-toggle">Toggle</button>
+        */
+        $(function() {
+            $('#btn-toggle').click(function() {
+                // animation will take one second
+                $('#target4').toggle(1000);
+            });
+        });
+
+        /*One final note about this, and all animations. 
+        Animations in jQuery return a promise object, which can be used to run code after an animation completes. We'll discuss promises in Module 3.
+        */
+
+
+        //**************************************************************************************
+        
+        /*
+        Animations in action
+        In the prior demonstrations and videos, we saw how to use show, hide and toggle to easily modify the visibility of an item, 
+        while also adding a little bit of animation to the UI. 
+        While this is certainly a neat trick, there's a very good chance you'll want to start a UI with a section already hidden.
+
+        Imagine the following scenario:
+
+        <form>
+            <div>
+                <label>Name:</label>
+                <input type="text" />
+            </div>
+            <div>
+                <label>Additional information:</label>
+                <input type="text" />
+            </div>
+        </form>
+        In the above form, we want to prompt the user for their name, and additional information. But what happens if that additional information is optional? 
+        It would be nice to provide some form of a button, checkbox, or otherwise, to enable the user to display the additional information section, 
+        rather than always displaying it.
+        Or, imagine if you were building a page where you had additional details, maybe a user agreement, 
+        that many people will ignore. Displaying that on the page takes up unnecessary real estate.
+        In both of those scenarios, it'd be great if we could hide the item, 
+        and only if the user indicates they want to see the extra data should we show it to them.
+        We can accomplish this by starting with the following HTML, updated from before:
+
+        <style>
+            .hidden { display: none; }
+        </style>
+        <form>
+            <div>
+                <label>Name:</label>
+                <input type="text" />
+            </div>
+            <button type="button" id="show-additional-information">
+                Show additional information
+            </button>
+            <div id="additional-information" class="hidden">
+                <label>Additional information:</label>
+                <input type="text" />
+            </div>
+        </form>
+        ...and then added the following script
+        */
+        $(function() {
+            $('#show-additional-information').click(function() {
+                $('#additional-information').show(750);
+            }); 
+        });
+
+        /*You'll notice that we're setting the div element with additional-information as its ID to display:none to start. 
+        The display property is what show will modify. We're then setting up the click event handler to call show, which will then cause the item to display.
+        */
+
+        //*********************************************************************************************************************************
+
+        /*
+        Fading and sliding
+        Fading
+        Both show and hide have a vertical animation. The new content sort of "rolls" onto the screen, or "rolls" up from the screen. 
+        If you don't want that additional animation, and just want the item to slowly appear or disappear, you can use fading.
+        
+        fadeIn, fadeOut and fadeToggle
+        Like their show/hide counterparts, fadeIn and fadeOut will display and hide an item respectively. 
+        And, like toggle, fadeToggle will reverse the current state of the item.
+
+        The fading functions perform their work by both modifying the CSS display property, and animates the item by modifying its opacity. 
+        If you want an item to start as hidden by default, and display it using fadeIn, you only need to set display: 
+        none; there is no need to modify the starting opacity.
+
+        Like all animation functions, the fading functions accept various parameters with the most common being the length of time (in milliseconds). 
+        Also, the fading functions return a promise, which we'll explore in Module 3.
+
+        Sliding
+        Unlike the other animations, the sliding functions cause the entire item to either slide down or slide up.
+
+        Keeping with the conventions we've already seen, slideDown will cause an item to appear, slideUp will cause it to disappear, 
+        and slideToggle will cause change its state.
+
+        The sliding functions perform their work by both modifying the CSS display property, and animates the item by modifying its position. 
+        If you want an item to start as hidden by default, and display it using slideDown, you only need to set display: none; there is no need to modify the starting position.
+
+        Like all animation functions, the sliding functions accept various parameters with the most common being the length of time (in milliseconds). 
+        Also, the sliding functions return a promise, which we'll explore in Module 3.
+
+        */
+
+        $("#fadingBtn").click(function(){
+            //$("#fadingBox").fadeOut(1000);
+            //$("#fadingBox").fadeToggle(1000);
+            //$("#fadingBox").slideUp(1000);
+            $("#fadingBox").slideToggle(1000);    
+        });
+
+        /*
+            Empty, removing and replacing (err)
+            <div>
+                <button id="errBtn" class="btn" type="button"> Execute</button>
+                <div id="errContent">
+                    <div>Some cool content</div>
+                    <div>Some more cool content</div>
+                </div>
+            </div>
+        */
+
+        $("#errBtn").click(function(){
+            //$("#errContent").remove();
+            //$("#errContent").empty();
+            //$("#errContent").replaceWith("<div> My New Content </div>");
+            $("<div>My New Content</div>").replaceAll("#errContent");   
+        });
+
+
+
+        //***************************************************************************************************************************************
+
+
+        /*
+        Cloning and cloning+animating
+  
+        The main reason to use jQuery is because it makes "day to day" programming in JavaScript much easier, 
+        offering functionality and capabilities common to other programming environments. Because the basic operations become that much easier, 
+        it allows you to focus your attention on the cooler features you wish to add to your pages, adding interactivity, 
+        and making your page seem more like a locally installed application.
+
+        This is where the humble function clone comes into play. clone allows you to make a copy of jQuery objects.
+        */
+
+        /*
+        It would work. But you've got a large string literal in JavaScript, which can be tough to debug when you got to make changes. 
+        In addition, whatever tool you're using to create your page isn't going to be able to offer you any support for the HTML that's inside of the string literal. 
+        And finally, we have the same markup twice, both in the starting HTML and in the JavaScript. 
+        (Granted, we could clean that up by adding the first line in through JavaScript, but that's not really the best solution here.)
+        */
+
+        /*
+        A better way to solve this problem would be to clone the starting HTML that makes up the user information form, and then use that clone to add the new content. 
+        (The HTML below hasn't changed from above, it's copied for readability.)
+        */
+
+        $(function(){
+            var $userForm = $('.user-entry').clone(); //first time we call clone
+            $('#add-line').click(function() {
+                //NOT GOOD
+                //$('#container').append('<div class="user-entry"> <label>Email:</label> <input type="email" /> <label>Password:</label> <input type="password" /> </div>');
+                //BETTER WAY
+                //var $userForm = $('.user-entry').clone(); <-- Here, this line is gonna create a exponential number of objects.
+                //Here we can make changes over the userForm clone and after append the modificated clone
+
+                //$copy = $userForm.clone(); //line 4 (second time we call clone)
+                //$copy.attr("id","someVarNumber");
+                //$('#container').append($copy);
+
+                //ATENTION
+                /*
+                On line 4, you'll notice we use the $userForm in append to add the markup (or jQuery object) we copied earlier. 
+                What you'll also notice is that we're calling clone() a second time. The reason for this is how JavaScript passes parameters. 
+                When you're working with an object, JavaScript passes a reference to the object, not a copy of the object. 
+                This would mean that we've added in a pointer to the clone we created earlier, not a brand new copy. 
+                The end result is that if we did not call clone() a second time, we'd be trying to add the exact same object into the container again, 
+                not a brand new copy. 
+                By calling clone() again on line 4, we pass in a copy of our user form, rather than a pointer to the one we already used.
+                */
+
+                //Combining cloning and animations
+
+                /*
+                Now that we know how to clone items to simplify creation of dynamic content, 
+                and how to animate them to add some additional punch to our pages, let's see how we could bring it all together.
+                
+                Let's modify our code to provide animation to the new elements. We'll start making sure our cloned item is hidden by using the css function. 
+                Because $userForm is a jQuery object, manipulate it just like any other jQuery object.
+                
+                When we call append, we know that the new item is going to be the last element in the container. We can access container's children by using children, and access the last one by calling last.
+
+                We also know that the item is hidden, because we set it to be hidden. If we call show, it will then display, with the animation. 
+                We can accomplish this by cloning it into a variable, adding the new variable, and then calling show on the new variable.
+                */
+
+                $copy = $userForm.clone(); //line 4 (second time we call clone)
+                $copy.attr("id","someVarNumber");
+                $copy.css("display","none"); //<-- new
+                $('#container').append($copy);
+                $copy.show(1000);
+            }); 
+        });
+
+
+          
+
+        //***************************************************************************************************************************************
+
+
+
+    </script>
+
+</footer>
+</html>
